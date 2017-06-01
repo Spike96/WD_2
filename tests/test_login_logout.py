@@ -12,8 +12,8 @@ def app(request):
 
 
 def test_login_logout(app):
-    app.open_home_page()
-    app.login(username="QACam", password="QACam12")
-    app.select_company()
-    app.logout()
+    app.session.open_home_page()
+    app.session.login(username="QACam", password="QACam12")
+    app.session.select_company()
+    app.session.logout()
  

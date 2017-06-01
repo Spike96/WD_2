@@ -12,25 +12,36 @@ def is_alert_present(wd):
 class test_login_logout(unittest.TestCase):
     def setUp(self):
         self.wd = WebDriver()
-        self.wd.implicitly_wait(60)
+        self.wd.implicitly_wait(15)
     
-    def test_test_login_logout(self):
-        success = True
+    def test_login_logout(self):
         wd = self.wd
-        wd.get("http://wd2.fintegro.ca/login")
-        wd.find_element_by_id("username").click()
-        wd.find_element_by_id("username").clear()
-        wd.find_element_by_id("username").send_keys("QACam")
-        wd.find_element_by_id("password").click()
-        wd.find_element_by_id("password").clear()
-        wd.find_element_by_id("password").send_keys("QACam12")
-        wd.find_element_by_css_selector("a.a_login.btn_submit").click()
+        self.open_home_page(wd)
+        self.login(wd, username="QACam", password="QACam12")
+        self.select_company(wd)
+        self.logout(wd)
+
+    def logout(self, wd):
+        wd.find_element_by_xpath("//nav/div[4]/a").click()
+        wd.find_element_by_link_text("Logout").click()
+
+    def select_company(self, wd):
         if not wd.find_element_by_xpath("//select[@id='companies']//option[2]").is_selected():
             wd.find_element_by_xpath("//select[@id='companies']//option[2]").click()
         wd.find_element_by_id("select").click()
-        wd.find_element_by_link_text("Logout").click()
-        self.assertTrue(success)
-    
+
+    def login(self, wd, username, password):
+        wd.find_element_by_id("username").click()
+        wd.find_element_by_id("username").clear()
+        wd.find_element_by_id("username").send_keys(username)
+        wd.find_element_by_id("password").click()
+        wd.find_element_by_id("password").clear()
+        wd.find_element_by_id("password").send_keys(password)
+        wd.find_element_by_css_selector("a.a_login.btn_submit").click()
+
+    def open_home_page(self, wd):
+        wd.get("http://wd2.fintegro.ca/login")
+
     def tearDown(self):
         self.wd.quit()
 

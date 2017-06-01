@@ -25,7 +25,6 @@ class test_login_logout(unittest.TestCase):
         wd.find_element_by_id("password").clear()
         wd.find_element_by_id("password").send_keys("QACam12")
         wd.find_element_by_css_selector("a.a_login.btn_submit").click()
-        wd.find_element_by_name("login").click()
         if not wd.find_element_by_xpath("//select[@id='companies']//option[2]").is_selected():
             wd.find_element_by_xpath("//select[@id='companies']//option[2]").click()
         wd.find_element_by_id("select").click()

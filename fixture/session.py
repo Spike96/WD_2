@@ -26,6 +26,6 @@ class SessionHelper:
         wd.find_element_by_id("password").send_keys(password)
         wd.find_element_by_css_selector("a.a_login.btn_submit").click()
 
-    def open_home_page(self):
-        wd = self.app.wd
-        wd.get("http://wd2.fintegro.ca/login")
+    # def open_home_page(self):
+    #     wd = self.app.wd
+    #     wd.get("http://wd2.fintegro.ca/login")

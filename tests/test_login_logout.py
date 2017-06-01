@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from application import Application
+from fixture.application import Application
 
 
 @pytest.fixture
@@ -16,3 +16,4 @@ def test_login_logout(app):
     app.login(username="QACam", password="QACam12")
     app.select_company()
     app.logout()
+ 

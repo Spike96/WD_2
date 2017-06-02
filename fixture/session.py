@@ -1,4 +1,4 @@
-
+from selenium.webdriver import ActionChains
 
 class SessionHelper:
 
@@ -7,7 +7,10 @@ class SessionHelper:
 
     def logout(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("//nav/div[4]/a").click()
+        element = wd.find_element_by_xpath("//nav/div[4]/a")
+        actions = ActionChains(wd)
+        actions.move_to_element(element).perform()
+        # wd.find_element_by_xpath("//nav/div[4]/a").click()
         wd.find_element_by_link_text("Logout").click()
 
     def select_company(self):

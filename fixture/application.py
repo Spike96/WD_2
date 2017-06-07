@@ -1,12 +1,15 @@
-from selenium.webdriver.chrome.webdriver import WebDriver
+# from selenium.webdriver.chrome.webdriver import WebDriver
+from selenium import webdriver
 from fixture.session import SessionHelper
 from fixture.manage_location import ManageLocationHelper
+
 
 
 class Application:
 
     def __init__(self):
-        self.wd = WebDriver()
+        # self.wd = WebDriver()
+        self.wd = webdriver.Chrome(desired_capabilities={"chromeOptions": {"args": ["--start-fullscreen"]}})
         self.wd.implicitly_wait(30)
         self.session = SessionHelper(self)
         self.manage_location = ManageLocationHelper(self)
